@@ -1,8 +1,14 @@
+import React from 'react';
+import './TodoList.css'
 
-export const TodoList = ({ children }) => {
-    return (
-        <section>
-            <ul>{children}</ul>
-        </section>
-    );
-};
+function TodoList(props) {
+  return (
+    <section>
+      <ul>
+        {props.children}
+      </ul>
+    </section>
+  );
+}
+
+export { TodoList };
