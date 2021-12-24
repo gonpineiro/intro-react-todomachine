@@ -9,7 +9,6 @@ function TodoSearch({ setSearchValue, searchValue }) {
     return (
         <>
             <input className="TodoSearch" placeholder="Cebolla" onChange={onSearchValueChange} value={searchValue} />
-            <p>{searchValue}</p>
         </>
     );
 }

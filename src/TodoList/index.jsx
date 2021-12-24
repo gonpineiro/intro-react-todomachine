@@ -1,15 +1,30 @@
 import React from 'react';
 import './TodoList.css';
 
-function TodoList({ error, onError, loading, onLoading, searchedTodos, onEmptyTodos, render }) {
+function TodoList({
+    error,
+    onError,
+    loading,
+    totalTodos,
+    searchValue,
+    onLoading,
+    searchedTodos,
+    onEmptyTodos,
+    render,
+    onEmptySearchResults,
+    children,
+}) {
+    const renderFun = children || render;
+
     return (
         <section className="TodoList-container">
             {error && onError()}
             {loading && onLoading()}
 
-            {!loading && !searchedTodos?.length && onEmptyTodos()}
+            {!loading && !totalTodos && onEmptyTodos()}
+            {!!totalTodos && !searchedTodos.length && onEmptySearchResults(searchValue)}
 
-            {searchedTodos.map(render)}
+            {searchedTodos.map(renderFun)}
         </section>
     );
 }
