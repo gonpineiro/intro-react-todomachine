@@ -11,14 +11,6 @@ import { TodoHeader } from '../TodoHeader';
 import { TodosError } from '../TodosError';
 import { TodosLoading } from '../TodosLoading';
 import { EmptyTodos } from '../EmptyTodos';
-// import './App.css';
-
-/* const defaultTodos = [
-    { text: 'Cortar cebolla', completed: true },
-    { text: 'Tomar el cursso de intro a React', completed: false },
-    { text: 'Llorar con la llorona', completed: true },
-    { text: 'LALALALAA', completed: false },
-]; */
 
 function App() {
     const {
@@ -43,12 +35,14 @@ function App() {
                 <TodoSearch setSearchValue={setSearchValue} searchValue={searchValue} />
             </TodoHeader>
 
-            <TodoList>
-                {error && <TodosError />}
-                {loading && <TodosLoading />}
-                {!loading && !searchedTodos.length && <EmptyTodos />}
-
-                {searchedTodos.map((todo) => (
+            <TodoList
+                error={error}
+                loading={loading}
+                searchedTodos={searchedTodos}
+                onError={() => <TodosError />}
+                onLoading={() => <TodosLoading />}
+                onEmptyTodos={() => <EmptyTodos />}
+                render={(todo) => (
                     <TodoItem
                         key={todo.text}
                         text={todo.text}
@@ -56,8 +50,8 @@ function App() {
                         onComplete={() => completeTodos(todo.text)}
                         onDelete={() => deleteTodo(todo.text)}
                     />
-                ))}
-            </TodoList>
+                )}
+            />
 
             {!!openModal && (
                 <Modal>
