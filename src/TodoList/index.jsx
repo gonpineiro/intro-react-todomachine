@@ -24,7 +24,7 @@ function TodoList({
             {!loading && !totalTodos && onEmptyTodos()}
             {!!totalTodos && !searchedTodos.length && onEmptySearchResults(searchValue)}
 
-            {searchedTodos.map(renderFun)}
+            {!loading && !error && searchedTodos.map(renderFun)}
         </section>
     );
 }
