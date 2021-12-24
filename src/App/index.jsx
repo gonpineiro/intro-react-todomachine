@@ -8,6 +8,9 @@ import { CreateTodoButton } from '../CreateTodoButton';
 import { TodoForm } from '../TodoForm';
 import { Modal } from '../Modal';
 import { TodoHeader } from '../TodoHeader';
+import { TodosError } from '../TodosError';
+import { TodosLoading } from '../TodosLoading';
+import { EmptyTodos } from '../EmptyTodos';
 // import './App.css';
 
 /* const defaultTodos = [
@@ -41,9 +44,9 @@ function App() {
             </TodoHeader>
 
             <TodoList>
-                {error && <p>Hubo un error</p>}
-                {loading && <p>Estamos cargando...</p>}
-                {!loading && !searchedTodos.length && <p>Crea tu primer TODO...</p>}
+                {error && <TodosError />}
+                {loading && <TodosLoading />}
+                {!loading && !searchedTodos.length && <EmptyTodos />}
 
                 {searchedTodos.map((todo) => (
                     <TodoItem
